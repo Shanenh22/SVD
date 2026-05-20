@@ -254,12 +254,7 @@ btn.addEventListener('click', function () {
     if (!btns.length) return;
 
     btns.forEach(function (btn) {
-      
-        /* A2: aria-labelledby for answer regions */
-        var btnId = 'faq-btn-' + Math.random().toString(36).slice(2,7);
-        btn.setAttribute('id', btnId);
-        answer.setAttribute('aria-labelledby', btnId);
-btn.addEventListener('click', function () {
+      btn.addEventListener('click', function () {
         btns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         var filter = btn.getAttribute('data-filter');
