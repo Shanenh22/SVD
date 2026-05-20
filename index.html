@@ -166,6 +166,16 @@
 }</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are you accepting new patients?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 we welcome new patients any day of the week. You can <a href='contact.html'>book online</a> or call (972) 852-2222. Same-day appointments are available for dental emergencies."}}, {"@type": "Question", "name": "What insurance plans do you accept?", "acceptedAnswer": {"@type": "Answer", "text": "We accept most PPO dental insurance plans. Before your appointment, we'll verify your benefits and explain exactly what's covered \u2014 so there are no surprise bills. We also offer a <a href='membership.html'>membership plan</a> for patients without insurance."}}, {"@type": "Question", "name": "Do you offer sedation for anxious patients?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Dr. Houshmand is certified in conscious sedation dentistry. If dental anxiety has kept you from getting the care you need, we have safe, effective sedation options. Patients who've avoided the dentist for years tell us it was the easiest appointment they've ever had."}}, {"@type": "Question", "name": "What should I do if I have a dental emergency?", "acceptedAnswer": {"@type": "Answer", "text": "Call us immediately at (972) 852-2222. We hold same-day slots open every day for emergency patients. If you're in severe pain, a tooth has been knocked out, or you have significant swelling, call now and we'll get you in as quickly as possible."}}, {"@type": "Question", "name": "How long has this practice been open?", "acceptedAnswer": {"@type": "Answer", "text": "Spring Valley Dental Associates was founded in 1994 by Dr. Shokooh Aletaha. We've been caring for North Dallas families for over 30 years, and many of our patients have been with us since the very beginning."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://springvalleydentistry.com/"}]}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Spring Valley Dental Associates — North Dallas Family Dentist",
+  "url": "https://springvalleydentistry.com/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".page-hero", "h1", ".section-h2"]
+  }
+}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -1120,46 +1130,5 @@
 })();
 </script>
 
-<script>
-/* More dropdown — keyboard + click accessible */
-(function(){
-  var btn = document.getElementById('nav-more-trigger');
-  var menu = document.getElementById('nav-more-menu');
-  if (!btn || !menu) return;
-
-  function open() {
-    btn.setAttribute('aria-expanded','true');
-    menu.classList.add('is-open');
-    menu.querySelector('a') && menu.querySelector('a').focus();
-  }
-  function close() {
-    btn.setAttribute('aria-expanded','false');
-    menu.classList.remove('is-open');
-  }
-
-  btn.addEventListener('click', function(e){
-    e.stopPropagation();
-    btn.getAttribute('aria-expanded') === 'true' ? close() : open();
-  });
-
-  /* Close on outside click */
-  document.addEventListener('click', function(){ close(); });
-  menu.addEventListener('click', function(e){ e.stopPropagation(); });
-
-  /* Keyboard: Escape closes, arrow keys move focus */
-  btn.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowDown') { e.preventDefault(); open(); }
-  });
-  menu.addEventListener('keydown', function(e){
-    var items = Array.from(menu.querySelectorAll('a'));
-    var idx = items.indexOf(document.activeElement);
-    if (e.key === 'Escape') { close(); btn.focus(); }
-    if (e.key === 'ArrowDown') { e.preventDefault(); items[(idx+1)%items.length].focus(); }
-    if (e.key === 'ArrowUp')   { e.preventDefault(); items[(idx-1+items.length)%items.length].focus(); }
-    if (e.key === 'Tab' && !e.shiftKey && idx === items.length-1) { close(); }
-  });
-})();
-</script>
 </body>
 </html>

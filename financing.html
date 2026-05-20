@@ -547,20 +547,5 @@
 <!-- Analytics events -->
 <script src="js/analytics.js" defer></script>
 
-<script>
-/* More dropdown — keyboard + click accessible */
-(function(){
-  var btn = document.getElementById('nav-more-trigger');
-  var menu = document.getElementById('nav-more-menu');
-  if (!btn || !menu) return;
-  function open() { btn.setAttribute('aria-expanded','true'); menu.classList.add('is-open'); menu.querySelector('a') && menu.querySelector('a').focus(); }
-  function close() { btn.setAttribute('aria-expanded','false'); menu.classList.remove('is-open'); }
-  btn.addEventListener('click', function(e){ e.stopPropagation(); btn.getAttribute('aria-expanded')=='true' ? close() : open(); });
-  document.addEventListener('click', function(){ close(); });
-  menu.addEventListener('click', function(e){ e.stopPropagation(); });
-  btn.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); if(e.key==='ArrowDown'){ e.preventDefault(); open(); } });
-  menu.addEventListener('keydown', function(e){ var items=Array.from(menu.querySelectorAll('a')); var idx=items.indexOf(document.activeElement); if(e.key==='Escape'){ close(); btn.focus(); } if(e.key==='ArrowDown'){ e.preventDefault(); items[(idx+1)%items.length].focus(); } if(e.key==='ArrowUp'){ e.preventDefault(); items[(idx-1+items.length)%items.length].focus(); } });
-})();
-</script>
 </body>
 </html>

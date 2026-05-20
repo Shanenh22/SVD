@@ -380,7 +380,7 @@ btn.addEventListener('click', function () {
 
     function openMenu() {
       trigger.setAttribute('aria-expanded', 'true');
-      menu.classList.add('open');
+      menu.classList.add('is-open');
       // focus first item
       var first = menu.querySelector('a[role="menuitem"]');
       if (first) setTimeout(function() { first.focus(); }, 50);
@@ -388,7 +388,7 @@ btn.addEventListener('click', function () {
 
     function closeMenu() {
       trigger.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('open');
+      menu.classList.remove('is-open');
     }
 
     trigger.addEventListener('click', function(e) {
