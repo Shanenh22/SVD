@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /downloads/
+Disallow: /email-template.html
+
+Sitemap: https://springvalleydentistry.com/sitemap.xml
