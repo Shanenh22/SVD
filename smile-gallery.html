@@ -283,16 +283,10 @@
      SMILE GALLERY CASES
      =====================================================================
      HOW TO ADD A NEW BEFORE/AFTER CASE:
-     1. Upload your before image to the images/ folder (e.g. images/patient-jane-before.webp)
-     2. Upload your after image to the images/ folder  (e.g. images/patient-jane-after.webp)
-     3. Copy one of the blocks below (from the opening { to the closing },)
-     4. Fill in the 5 fields:
-        - category : one of  veneers | invisalign | whitening | implants | bonding
-        - title    : short description shown as the card heading
-        - detail   : one line of extra detail (treatment time, number of veneers, etc.)
-        - before   : path to the before image  (e.g. "images/patient-jane-before.webp")
-        - after    : path to the after image   (e.g. "images/patient-jane-after.webp")
-     5. Save the file — the new card appears automatically on the page.
+     1. Drop photos into the images/Smile_Gallery/ folder
+     2. Find the GALLERY_CASES section in this file (labeled below)
+     3. Copy one of the existing blocks and fill in 5 fields
+     4. Save — the card appears automatically on the page.
 
      TO REMOVE A CASE: delete its entire block from { to },
      TO REORDER CASES: cut and paste the blocks into the order you want.
@@ -300,52 +294,88 @@
 <script>
 var GALLERY_CASES = [
 
+  /* ═══════════════════════════════════════════════════════════════════
+     HOW TO ADD A NEW BEFORE/AFTER CASE
+     ───────────────────────────────────────────────────────────────────
+     1. Drop your before photo into:  images/Smile_Gallery/
+        Name it like:  Veneers_Before_3.webp
+     2. Drop your after photo into:   images/Smile_Gallery/
+        Name it like:  Veneers_After_3.webp
+     3. Copy one of the blocks below (from { to the closing },)
+     4. Fill in the 5 fields:
+           category : one of  veneers | invisalign | whitening | implants | bonding
+           title    : short heading shown on the card
+           detail   : one-line description (treatment detail, tooth count, etc.)
+           before   : "images/Smile_Gallery/YourFile_Before.webp"
+           after    : "images/Smile_Gallery/YourFile_After.webp"
+     5. Save — the card appears automatically. No other changes needed.
+
+     TO REMOVE: delete the block from { to },
+     TO REORDER: cut and paste blocks into the order you want.
+     ═══════════════════════════════════════════════════════════════════ */
+
   {
     category : "veneers",
-    title    : "Porcelain veneers — full smile makeover",
-    detail   : "12 custom veneers, upper arch",
-    before   : "images/veneers.webp",
-    after    : "images/veneers.webp"
+    title    : "Veneers — discoloration & alignment correction",
+    detail   : "Full upper arch, uniform shape and color restored",
+    before   : "images/Smile_Gallery/Veneers_Before_2.webp",
+    after    : "images/Smile_Gallery/Veneers_After_2.webp"
   },
 
   {
     category : "invisalign",
-    title    : "Invisalign — closing gaps and crowding",
-    detail   : "18 months of treatment",
-    before   : "images/invisalign.webp",
-    after    : "images/invisalign.webp"
+    title    : "Invisalign — severe crowding and rotation",
+    detail   : "Fully straightened arch, rotated incisor corrected",
+    before   : "images/Smile_Gallery/Invisalign_Before_1.webp",
+    after    : "images/Smile_Gallery/Invisalign_After_1.webp"
+  },
+
+  {
+    category : "invisalign",
+    title    : "Invisalign — spacing and gap closure",
+    detail   : "Multiple gaps closed, even spacing achieved",
+    before   : "images/Smile_Gallery/Invisalign_Before_2.webp",
+    after    : "images/Smile_Gallery/Invisalign_After_2.webp"
   },
 
   {
     category : "whitening",
-    title    : "Professional in-office whitening",
-    detail   : "Single 90-minute session",
-    before   : "images/teeth_whitening.webp",
-    after    : "images/teeth_whitening1.webp"
+    title    : "Whitening — moderate surface staining",
+    detail   : "Noticeably lighter, more uniform shade",
+    before   : "images/Smile_Gallery/Whitening_Before_1.webp",
+    after    : "images/Smile_Gallery/Whitening_After_1.webp"
+  },
+
+  {
+    category : "whitening",
+    title    : "Whitening — heavy discoloration",
+    detail   : "Dramatic brightening of yellow-brown staining",
+    before   : "images/Smile_Gallery/Whitening_Before_2.webp",
+    after    : "images/Smile_Gallery/Whitening_After_2.webp"
   },
 
   {
     category : "implants",
-    title    : "Single tooth implant — molar replacement",
-    detail   : "Completed in two visits",
-    before   : "images/dental-implants.webp",
-    after    : "images/dental-implants.webp"
+    title    : "Implant — missing upper central incisor",
+    detail   : "Single implant with porcelain crown, natural color match",
+    before   : "images/Smile_Gallery/Dental_Implants_Before_1.webp",
+    after    : "images/Smile_Gallery/Dental_Implants_After_1.webp"
+  },
+
+  {
+    category : "implants",
+    title    : "Implant — front tooth replacement",
+    detail   : "Seamless restoration, gap fully closed",
+    before   : "images/Smile_Gallery/Dental_Implants_Before_2.webp",
+    after    : "images/Smile_Gallery/Dental_Implants_After_2.webp"
   },
 
   {
     category : "bonding",
-    title    : "Composite bonding — chipped incisor",
-    detail   : "One-appointment restoration",
-    before   : "images/bonding.webp",
-    after    : "images/bonding.webp"
-  },
-
-  {
-    category : "veneers",
-    title    : "Veneers — discoloration and shape correction",
-    detail   : "6 upper veneers",
-    before   : "images/veneers.webp",
-    after    : "images/veneers.webp"
+    title    : "Bonding — chipped edges and midline gap",
+    detail   : "Edges repaired, gap closed in one appointment",
+    before   : "images/Smile_Gallery/Bonding_Before_1.webp",
+    after    : "images/Smile_Gallery/Bonding_After_1.webp"
   }
 
   /* ── ADD NEW CASES ABOVE THIS LINE ── */
