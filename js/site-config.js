@@ -23,3 +23,11 @@ window.SITE_CONFIG = {
     GA_MEASUREMENT_ID: "G-KY64HPT0ER"
   }
 };
+
+/* Service Worker registration */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .catch(function (err) { console.warn('SW registration failed:', err); });
+  });
+}
