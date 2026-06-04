@@ -932,7 +932,9 @@ strong { font-weight: 600; color: var(--ink); }
   .hamburger { display: flex; }
   .nav-links { display: none; }
   .mobile-bar { display: block; }
-  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  /* Safe fallback clearance for the fixed action bar (incl. optional status
+     ribbon). core.js refines this to the bar's exact height at runtime. */
+  body { padding-bottom: calc(94px + env(safe-area-inset-bottom)); }
   .section { padding: 52px var(--pad-x); }
   .hero-left { padding: 44px var(--pad-x) 56px; }
   .hero h1 { font-size: 26px; }

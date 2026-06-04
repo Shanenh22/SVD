@@ -1,35 +1,34 @@
-/* Spring Valley Dental — Service Worker v1.0
- * Strategy: Cache-first for assets, network-first for HTML pages.
- * Provides offline fallback and dramatically speeds up repeat visits.
+/* Spring Valley Dental — Service Worker v2
+ * HTML: network-first (always fresh when online; offline fallback).
+ * Assets (CSS/JS/img): stale-while-revalidate (fast, and self-updates each
+ *   visit so a code change is never permanently stuck in cache).
+ * IMPORTANT: bump CACHE_VERSION on every release so old caches are purged.
  */
 
-const CACHE_VERSION = 'svd-v1';
+const CACHE_VERSION = 'svd-v2';
 const STATIC_CACHE  = CACHE_VERSION + '-static';
 const PAGE_CACHE    = CACHE_VERSION + '-pages';
 
-/* Assets to precache on install */
 const PRECACHE_ASSETS = [
-  '/css/styles.css',
+  '/css/styles.min.css',
   '/js/core.js',
   '/js/analytics.js',
   '/js/site-config.js',
   '/images/spring-valley-logo-desktop.svg',
-  '/images/spring-valley-logo-mobile.svg',
   '/images/favicon.svg',
-  '/images/hero-background.webp',
-  '/offline.html',
+  '/offline.html'
 ];
 
-/* ── Install: precache static assets ─────────────────────────── */
+/* Install: precache resiliently (one missing file won't brick install). */
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(cache => cache.addAll(PRECACHE_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(STATIC_CACHE).then(cache =>
+      Promise.allSettled(PRECACHE_ASSETS.map(url => cache.add(url)))
+    ).then(() => self.skipWaiting())
   );
 });
 
-/* ── Activate: clean up old caches ───────────────────────────── */
+/* Activate: delete every cache that isn't the current version. */
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -41,16 +40,20 @@ self.addEventListener('activate', event => {
   );
 });
 
-/* ── Fetch: cache strategy ────────────────────────────────────── */
+self.addEventListener('message', event => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+});
+
 self.addEventListener('fetch', event => {
   const req = event.request;
   const url = new URL(req.url);
 
-  /* Only handle same-origin GET requests */
   if (req.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  /* HTML pages: network-first, fall back to cache, then offline page */
-  if (req.headers.get('Accept') && req.headers.get('Accept').includes('text/html')) {
+  const accept = req.headers.get('Accept') || '';
+
+  /* HTML: network-first, fall back to cached page, then offline page. */
+  if (req.mode === 'navigate' || accept.includes('text/html')) {
     event.respondWith(
       fetch(req)
         .then(res => {
@@ -59,24 +62,22 @@ self.addEventListener('fetch', event => {
           return res;
         })
         .catch(() =>
-          caches.match(req)
-            .then(cached => cached || caches.match('/offline.html'))
+          caches.match(req).then(cached => cached || caches.match('/offline.html'))
         )
     );
     return;
   }
 
-  /* Static assets: cache-first */
+  /* Assets: stale-while-revalidate. */
   event.respondWith(
-    caches.match(req).then(cached => {
-      if (cached) return cached;
-      return fetch(req).then(res => {
-        if (res.ok) {
-          const clone = res.clone();
-          caches.open(STATIC_CACHE).then(c => c.put(req, clone));
-        }
-        return res;
-      });
-    })
+    caches.open(STATIC_CACHE).then(cache =>
+      cache.match(req).then(cached => {
+        const network = fetch(req).then(res => {
+          if (res && res.ok) cache.put(req, res.clone());
+          return res;
+        }).catch(() => cached);
+        return cached || network;
+      })
+    )
   );
 });

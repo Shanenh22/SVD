@@ -26,8 +26,24 @@ window.SITE_CONFIG = {
 
 /* Service Worker registration */
 if ('serviceWorker' in navigator) {
+  /* If a previously-installed SW is replaced by a new version, reload once so
+     the page picks up the fresh CSS/JS instead of stale cached copies. Only
+     reloads when REPLACING an existing controller (never on first install),
+     and guards against reload loops. */
+  var hadController = !!navigator.serviceWorker.controller;
+  var reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (hadController && !reloading) {
+      reloading = true;
+      window.location.reload();
+    }
+  });
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then(function (reg) {
+        /* Proactively check for an updated SW on each load. */
+        if (reg && reg.update) { try { reg.update(); } catch (e) {} }
+      })
       .catch(function (err) { console.warn('SW registration failed:', err); });
   });
 }

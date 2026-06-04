@@ -481,6 +481,17 @@ btn.addEventListener('click', function () {
   }
 
   /* ── INIT ───────────────────────────────────────────────────────────────── */
+  /* ── MOBILE BAR SPACING ──────────────────────────────────────────────────
+     The fixed bottom action bar can include a status ribbon, so its height
+     varies. Reserve its *actual* rendered height as body padding-bottom so the
+     footer (Privacy / HIPAA links) is never hidden behind it. */
+  function fitMobileBar() {
+    var bar = document.getElementById('mobile-bar') || document.querySelector('.mobile-bar');
+    if (!bar) return;
+    var shown = window.getComputedStyle(bar).display !== 'none';
+    document.body.style.paddingBottom = shown ? (bar.offsetHeight + 'px') : '';
+  }
+
   function init() {
     syncReviewCounts();
     initNav();
@@ -496,6 +507,17 @@ btn.addEventListener('click', function () {
     initLazyMaps();
     initAnchorScroll();
     initMoreDropdown();
+    fitMobileBar();
+    // Re-measure after late layout/ribbon paint, and on viewport changes.
+    setTimeout(fitMobileBar, 250);
+    window.addEventListener('load', fitMobileBar);
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt); rt = setTimeout(fitMobileBar, 150);
+    });
+    window.addEventListener('orientationchange', function () {
+      setTimeout(fitMobileBar, 200);
+    });
   }
 
   if (document.readyState === 'loading') {

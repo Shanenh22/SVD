@@ -53,3 +53,16 @@ Run this before every deployment. Takes < 10 minutes.
 - [ ] Refresh any seasonal offers or messaging
 - [ ] Check GA4 for top landing pages — confirm no unexpected 404s in behavior flow
 - [ ] Confirm Web3Forms is still operational and review BAA status
+
+## Service worker (IMPORTANT on every release)
+
+The site uses a service worker (`sw.js`) for offline support and faster repeat
+visits. To avoid visitors getting stale CSS/JS after you publish changes:
+
+1. **Bump `CACHE_VERSION`** in `sw.js` (e.g. `svd-v2` -> `svd-v3`) whenever you
+   change any CSS, JS, or precached asset. This purges old caches on activate.
+2. Assets use a stale-while-revalidate strategy, so a returning visitor gets the
+   updated files automatically on their next load; `site-config.js` reloads the
+   page once when a new worker takes over.
+3. If a browser ever seems stuck on old files, in DevTools open
+   Application > Service Workers > Unregister, then hard-reload (Shift+Reload).
