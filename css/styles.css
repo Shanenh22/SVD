@@ -1196,39 +1196,23 @@ body { font-family: 'DM Sans', 'DM Sans Fallback', -apple-system, BlinkMacSystem
    PATCH v4.2 — Nav, Footer, Hero, Spanish, Logo
    ═══════════════════════════════════════════════════════════════ */
 
-/* PAGE HERO — soft navy gradient with a curved bottom edge + gold accent */
+/* PAGE HERO — hero image background instead of plain navy */
 .page-hero {
-  background: linear-gradient(157deg, #0E365A 0%, #0a2740 100%) !important;
-  padding: 56px var(--pad-x) 60px !important;
+  background: linear-gradient(135deg,rgba(14,54,90,.88) 0%,rgba(14,54,90,.72) 100%),
+              url('../images/hero-background.webp') center/cover no-repeat !important;
+  padding: 64px var(--pad-x) !important;
   text-align: center;
   position: relative;
   overflow: hidden;
-  min-height: 210px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-/* subtle brand glow for depth */
-.page-hero::before {
-  content: '' !important; display: block !important;
-  position: absolute; top: -90px; right: -70px;
-  width: 300px; height: 300px; border-radius: 50%;
-  background: rgba(0,119,182,.20); filter: blur(75px); pointer-events: none;
-}
-/* curved bottom edge — the page gently rises into the hero */
-.page-hero::after {
-  content: ''; position: absolute; left: -5%; right: -5%; bottom: 0;
-  height: 48px; background: var(--cloud);
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  pointer-events: none;
-}
-.page-hero h1 { color: var(--white) !important; position: relative; z-index: 1; margin-bottom: 16px; font-size: clamp(24px,3.5vw,42px); }
-.page-hero h1::after {
-  content: ''; display: block; width: 50px; height: 3px;
-  background: var(--gold); border-radius: 2px; margin: 16px auto 0;
-}
-.page-hero p { color: rgba(255,255,255,.82) !important; max-width: 600px; margin: 0 auto; position: relative; z-index: 1; font-size: 16px; }
+.page-hero::before { display: none !important; }
+.page-hero h1 { color: var(--white) !important; position: relative; margin-bottom: 14px; font-size: clamp(24px,3.5vw,42px); }
+.page-hero p { color: rgba(255,255,255,.82) !important; max-width: 600px; margin: 0 auto; position: relative; font-size: 16px; }
 
 
 /* BREADCRUMB — white text on hero */
@@ -1341,12 +1325,10 @@ body { font-family: 'DM Sans', 'DM Sans Fallback', -apple-system, BlinkMacSystem
 
   /* === PAGE HERO === */
   .page-hero {
-    padding: 44px 16px 50px !important;
-    min-height: 170px !important;
+    padding: 44px 16px 36px !important;
+    min-height: 160px !important;
   }
-  .page-hero::after { height: 34px !important; }
-  .page-hero h1 { font-size: clamp(22px, 6vw, 32px) !important; margin-bottom: 12px !important; }
-  .page-hero h1::after { margin-top: 12px !important; }
+  .page-hero h1 { font-size: clamp(22px, 6vw, 32px) !important; margin-bottom: 10px !important; }
   .page-hero p  { font-size: 16px !important; }
   .breadcrumb   { padding: 10px 16px !important; font-size: 14px !important; }
 
