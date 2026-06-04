@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <!-- Core pages -->
   <url>
@@ -7,6 +8,7 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/building_front_with_logo.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/about.html</loc>
@@ -39,36 +41,42 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/dental-implants.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/invisalign.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/invisalign.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/porcelain-veneers.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/veneers.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/teeth-whitening.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/teeth_whitening.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/sedation.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/sedation.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/crowns-bridges.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/restorative.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/dental-bonding.html</loc>
@@ -81,12 +89,14 @@
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/root_canal.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/gum-disease-treatment.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/stages-of-gum-disease.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/dental-fillings.html</loc>
@@ -150,6 +160,22 @@
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Bonding_After_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Bonding_Before_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Dental_Implants_After_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Dental_Implants_After_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Dental_Implants_Before_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Dental_Implants_Before_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Invisalign_After_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Invisalign_After_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Invisalign_Before_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Invisalign_Before_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Veneers_After_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Veneers_Before_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Whitening_After_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Whitening_After_2.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Whitening_Before_1.webp</image:loc></image:image>
+    <image:image><image:loc>https://springvalleydentistry.com/images/Smile_Gallery/Whitening_Before_2.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://springvalleydentistry.com/reviews.html</loc>
@@ -265,6 +291,38 @@
   </url>
   <url>
     <loc>https://springvalleydentistry.com/invisalign-vs-braces-dallas.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Added 2026-06-03: Spanish geo landing pages -->
+  <url>
+    <loc>https://springvalleydentistry.com/es/dentista-en-addison-tx.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://springvalleydentistry.com/es/dentista-en-carrollton-tx.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://springvalleydentistry.com/es/dentista-en-farmers-branch-tx.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://springvalleydentistry.com/es/dentista-en-irving-tx.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://springvalleydentistry.com/es/dentista-en-richardson-tx.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
