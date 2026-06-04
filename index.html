@@ -46,10 +46,11 @@
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" crossorigin="anonymous"/></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.min.css"/>
 
 
 <!-- Schema -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Spring Valley Dental Associates", "alternateName": "Spring Valley Dental", "url": "https://springvalleydentistry.com/", "inLanguage": "en", "publisher": {"@id": "https://springvalleydentistry.com/#dentist"}}</script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Dentist",
@@ -109,7 +110,6 @@
     "Irving",
     "Richardson"
   ],
-  /* REVIEW COUNT — update globally when this changes. Source: data/reviews.json */
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5.0",
@@ -121,7 +121,6 @@
     "https://www.instagram.com/springvalleydental_dallas",
     "https://www.facebook.com/share/16xP4Vjixk/"
   ],
-,
   "hasMap": "https://www.google.com/maps/place/14228+Midway+Rd+%23100,+Dallas,+TX+75244",
   "medicalSpecialty": [
     "General Dentistry",
@@ -140,8 +139,8 @@
     {"@type": "MedicalProcedure", "name": "Emergency Dental Care"},
     {"@type": "MedicalProcedure", "name": "Gum Disease Treatment"},
     {"@type": "MedicalProcedure", "name": "Tooth Extraction"}
-  ]
-    "founders": [
+  ],
+  "employee": [
     {
       "@type": "Person",
       "name": "Dr. Shokooh Aletaha",
@@ -177,7 +176,7 @@
   }
 }</script>
 </head>
-<body>
+<body data-page-category="home">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
@@ -185,7 +184,7 @@
     <a href="index.html" class="nav-logo" aria-label="Spring Valley Dental Associates — home">
       <picture>
         <source media="(max-width:640px)" srcset="images/spring-valley-logo-mobile.svg" type="image/svg+xml"/>
-        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" height="52" loading="eager" fetchpriority="high"/>
+        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" width="208" height="52" loading="eager" fetchpriority="high"/>
       </picture>
     </a>
     <div class="nav-links" role="list">
@@ -310,7 +309,7 @@
       </span>
       <span class="proof-item" role="listitem">
         <i class="ti ti-message-circle" aria-hidden="true"></i>
-        <span><strong>214</strong> five-star reviews</span>
+        <span><strong data-review-count>214</strong> five-star reviews</span>
       </span>
       <span class="proof-item" role="listitem">
         <i class="ti ti-shield-check" aria-hidden="true"></i>
@@ -350,8 +349,9 @@
   <!-- Three intent cards — row on desktop, slim stack on mobile -->
   <div class="hero-d-cards" role="list" aria-label="Choose your care path">
 
-    <a href="#emergency-cta" class="hero-d-card hero-d-card-1" role="listitem"
-       aria-label="I have pain — scrolls to emergency care section">
+    <a href="emergency.html" class="hero-d-card hero-d-card-1" role="listitem"
+       data-track="hero-card" data-track-location="card-1"
+       aria-label="I have pain or a dental emergency — go to emergency care">
       <div class="hdc-num" aria-hidden="true">1</div>
       <div class="hdc-body">
         <div class="hdc-title">I have pain or a dental emergency</div>
@@ -360,8 +360,9 @@
       <div class="hdc-arrow" aria-hidden="true"><i class="ti ti-arrow-right"></i></div>
     </a>
 
-    <a href="#new-patient" class="hero-d-card hero-d-card-2" role="listitem"
-       aria-label="New patient — scrolls to meet our doctors">
+    <a href="patient-info.html" class="hero-d-card hero-d-card-2" role="listitem"
+       data-track="hero-card" data-track-location="card-2"
+       aria-label="New patient — go to new patient information">
       <div class="hdc-num" aria-hidden="true">2</div>
       <div class="hdc-body">
         <div class="hdc-label">New patient</div>
@@ -371,8 +372,9 @@
       <div class="hdc-arrow" aria-hidden="true"><i class="ti ti-arrow-right"></i></div>
     </a>
 
-    <a href="#our-services" class="hero-d-card hero-d-card-3" role="listitem"
-       aria-label="Cosmetic — scrolls to our services">
+    <a href="services.html" class="hero-d-card hero-d-card-3" role="listitem"
+       data-track="hero-card" data-track-location="card-3"
+       aria-label="Improve my smile — go to our services">
       <div class="hdc-num" aria-hidden="true">3</div>
       <div class="hdc-body">
         <div class="hdc-label">Cosmetic</div>
@@ -427,7 +429,7 @@
 
 <!-- ══ REASSURANCE STRIP ═══════════════════════════════════════════════════ -->
 <div class="reassure" role="list" aria-label="Why patients trust Spring Valley Dental">
-  <span class="re-item re-item-stat" role="listitem"><i class="ti ti-star-filled" aria-hidden="true"></i><strong>214</strong> five-star Google reviews</span>
+  <span class="re-item re-item-stat" role="listitem"><i class="ti ti-star-filled" aria-hidden="true"></i><strong data-review-count>214</strong> five-star Google reviews</span>
   <span class="re-dot" aria-hidden="true"></span>
   <span class="re-item re-item-stat" role="listitem"><i class="ti ti-calendar-stats" aria-hidden="true"></i><strong>30+</strong> years serving North Dallas</span>
   <span class="re-dot" aria-hidden="true"></span>
@@ -445,7 +447,7 @@
   <h2 id="stats-heading" class="sr-only">Practice statistics</h2>
   <div class="stats-grid">
     <div class="sb">
-      <span class="sb-n serif" data-count="214">0</span>
+      <span class="sb-n serif" data-review-count data-count="214">0</span>
       <span class="sb-l">Five-star Google reviews</span>
     </div>
     <div class="sb">
@@ -612,6 +614,27 @@
 </section>
 
 
+<!-- ══ MEMBERSHIP CALLOUT ═════════════════════════════════════════════════ -->
+<section class="section membership-callout" style="background:var(--navy)" aria-labelledby="membership-callout-h">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1.6fr auto;gap:32px;align-items:center">
+      <div>
+        <div class="section-label" style="color:var(--mint)">In-house membership plan</div>
+        <h2 class="section-h2 serif" id="membership-callout-h" style="color:var(--white);margin-bottom:8px">No insurance? No problem.</h2>
+        <p style="color:rgba(255,255,255,.82);font-size:17px;line-height:1.65;max-width:620px;margin:0">
+          Join our membership plan from just $250&ndash;$600 a year and get your cleanings, exams, and x-rays covered &mdash; plus 20% off all other treatment. No deductibles, no waiting periods, no claim forms.
+        </p>
+      </div>
+      <div style="white-space:nowrap">
+        <a href="membership.html" class="btn btn-primary btn-lg" data-track="appointment" data-track-location="membership-callout">
+          <i class="ti ti-heart-handshake" aria-hidden="true"></i> See plan &amp; pricing
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ══ MID-PAGE BOOKING CTA ═══════════════════════════════════════════════ -->
 <div id="emergency-cta"></div>
 <div class="mid-cta reveal" role="complementary" aria-label="Book an appointment">
@@ -748,7 +771,7 @@
     <div class="rev-header">
       <div>
         <div class="section-label">What patients say</div>
-        <h2 class="section-h2 serif" id="reviews-heading" style="margin-bottom:0">214 five-star reviews — here's why.</h2>
+        <h2 class="section-h2 serif" id="reviews-heading" style="margin-bottom:0"><span data-review-count>214</span> five-star reviews — here's why.</h2>
       </div>
       <div class="rev-rating">
         <span class="rev-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -811,10 +834,25 @@
 <div class="hr-row" data-day="6"><span class="hday">Saturday</span><span class="htime"><button class="sat-info" type="button" aria-label="First Saturday of month by appointment — click for details">By appt<span class="sat-tooltip">First Saturday of each month only — by appointment.<br>Call (972) 852-2222 to schedule.</span></button></span></div>
 <div class="hr-row" data-day="0"><span class="hday">Sunday</span><span class="htime">Closed</span></div>
         </div>
-        <div class="map-placeholder" role="img" aria-label="Map showing Spring Valley Dental at 14228 Midway Rd, Dallas TX 75244">
-          <i class="ti ti-map-pin" aria-hidden="true"></i>
-          <span>14228 Midway Rd Suite 100 &middot; Dallas TX 75244</span>
-          <a href="https://www.google.com/maps/place/14228+Midway+Rd+%23100,+Dallas,+TX+75244" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="margin-top:8px">Get Directions</a>
+        <div class="map-embed">
+          <iframe
+            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.9654320123!2d-96.8403!3d32.9437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c212923401a27%3A0xe46880f7a6da507c!2s14228%20Midway%20Rd%20Suite%20100%2C%20Dallas%2C%20TX%2075244!5e0!3m2!1sen!2sus!4v1715900000000"
+            width="100%" height="200" style="border:0;display:block"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Spring Valley Dental Associates on Google Maps"
+            aria-label="Map showing Spring Valley Dental at 14228 Midway Rd, Dallas TX 75244"></iframe>
+        </div>
+        <a href="https://www.google.com/maps/place/14228+Midway+Rd+%23100,+Dallas,+TX+75244" target="_blank" rel="noopener noreferrer" id="cta-directions" class="btn btn-sm btn-outline" style="margin-top:12px">
+          <i class="ti ti-map-pin" aria-hidden="true"></i> Get Directions
+        </a>
+        <div class="areas-served" style="margin-top:18px;font-size:14.5px;color:var(--gray);line-height:1.7">
+          <strong style="color:var(--navy);display:block;margin-bottom:4px">Proudly serving North Dallas &amp; nearby communities</strong>
+          <a href="dentist-addison-tx.html" style="color:var(--blue);font-weight:500">Addison</a> &middot;
+          <a href="dentist-carrollton-tx.html" style="color:var(--blue);font-weight:500">Carrollton</a> &middot;
+          <a href="dentist-farmers-branch-tx.html" style="color:var(--blue);font-weight:500">Farmers Branch</a> &middot;
+          <a href="dentist-irving-tx.html" style="color:var(--blue);font-weight:500">Irving</a> &middot;
+          <a href="dentist-richardson-tx.html" style="color:var(--blue);font-weight:500">Richardson</a>
         </div>
       </div>
       <div>
@@ -977,6 +1015,14 @@
     </div>
   </div>
   <div class="footer-bottom">
+    <nav class="footer-areas" aria-label="Areas we serve">
+      <span class="footer-areas-label">Areas we serve:</span>
+      <a href="dentist-addison-tx.html">Addison</a>
+      <a href="dentist-carrollton-tx.html">Carrollton</a>
+      <a href="dentist-farmers-branch-tx.html">Farmers Branch</a>
+      <a href="dentist-irving-tx.html">Irving</a>
+      <a href="dentist-richardson-tx.html">Richardson</a>
+    </nav>
     <span>&copy; <span id="footer-year">2026</span> Spring Valley Dental Associates. All rights reserved. Information on this site is for educational purposes only and does not constitute dental or medical advice.</span>
     <div class="footer-legal-links">
       <a href="privacy.html">Privacy policy</a>

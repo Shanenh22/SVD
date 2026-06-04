@@ -72,9 +72,16 @@
   }
 
   // ── Helper: fire GA4 event (only fires if consent is granted) ─────────────
+  // Automatically attaches service_category from <body data-page-category="…">
+  // so every conversion/event can be segmented by the page the visitor was on.
   function ga(eventName, params) {
     if (window.gtag && ID) {
-      try { window.gtag('event', eventName, params || {}); } catch(e) {}
+      params = params || {};
+      try {
+        var cat = document.body && document.body.dataset ? document.body.dataset.pageCategory : '';
+        if (cat && params.service_category == null) params.service_category = cat;
+      } catch (e) {}
+      try { window.gtag('event', eventName, params); } catch(e) {}
     }
   }
 
@@ -192,10 +199,12 @@
     ga('form_submission_success', { event_category: 'conversion', event_label: 'contact_form', value: 10 });
     // Google Ads conversion hook — replace AW-XXXXXXX/XXXXXXX with real IDs when ready
     // if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXX/XXXXXXX' });
-    // Redirect or show success state
+    // The page-level form handler owns the success UI (it reveals #form-success and
+    // hides the form). Only fall back to a basic inline message when no page handler
+    // has marked the success state as already handled.
     var form = document.getElementById('contact-form');
-    if (form) {
-      form.innerHTML = '<div class="form-success" role="alert"><strong>Thank you!</strong> We'll be in touch within one business day. For urgent needs call (972) 852-2222.</div>';
+    if (form && form.dataset.successHandled !== 'true') {
+      form.innerHTML = '<div class="form-success" role="alert"><strong>Thank you!</strong> We&rsquo;ll be in touch within one business day. For urgent needs call (972) 852-2222.</div>';
     }
   };
 

@@ -160,7 +160,9 @@ btn.addEventListener('click', function () {
     var container = document.getElementById(containerId);
     if (!container) return;
     var today = new Date().getDay();
+    var h     = HOURS[today] || {};
     var open  = isOpen(today);
+    var byAppt = (h.open === null && !!h.note); // appointment-only day (e.g. Saturday)
 
     container.querySelectorAll(rowSel).forEach(function (row) {
       var d = parseInt(row.getAttribute('data-day'), 10);
@@ -170,9 +172,20 @@ btn.addEventListener('click', function () {
       if (!dayEl) return;
 
       var pill = document.createElement('span');
-      pill.className = open ? 'live-pill' : 'live-pill closed';
-      pill.textContent = open ? 'Open now' : 'Closed';
-      pill.setAttribute('aria-label', open ? 'Currently open' : 'Currently closed');
+      if (open) {
+        pill.className = 'live-pill';
+        pill.textContent = 'Open now';
+        pill.setAttribute('aria-label', 'Currently open');
+      } else if (byAppt) {
+        pill.className = 'live-pill appt';
+        pill.textContent = 'By appt';
+        pill.setAttribute('aria-label', 'Open by appointment today');
+        if (h.note) pill.setAttribute('title', h.note);
+      } else {
+        pill.className = 'live-pill closed';
+        pill.textContent = 'Closed';
+        pill.setAttribute('aria-label', 'Currently closed');
+      }
       dayEl.appendChild(pill);
     });
   }
@@ -267,6 +280,21 @@ btn.addEventListener('click', function () {
         });
       });
     });
+
+    // Deep-link support: /smile-gallery.html#veneers auto-applies that filter.
+    function applyHashFilter() {
+      var key = (location.hash || '').replace('#', '').toLowerCase();
+      if (!key) return;
+      var match = Array.prototype.filter.call(btns, function (b) {
+        return b.getAttribute('data-filter') === key;
+      })[0];
+      if (match) {
+        match.click();
+        match.focus();
+      }
+    }
+    applyHashFilter();
+    window.addEventListener('hashchange', applyHashFilter);
   }
 
   /* ── FOOTER YEAR ────────────────────────────────────────────────────────── */
@@ -422,8 +450,39 @@ btn.addEventListener('click', function () {
     });
   }
 
+  /* ── REVIEW COUNT / RATING SYNC ─────────────────────────────────────────
+     Single source of truth: data/reviews.json -> aggregate.{reviewCount,ratingValue}.
+     Updates any element with [data-review-count] or [data-review-rating], and keeps
+     the homepage stats counter ([data-count] on a [data-review-count] node) in sync. */
+  function syncReviewCounts() {
+    var countEls  = document.querySelectorAll('[data-review-count]');
+    var ratingEls = document.querySelectorAll('[data-review-rating]');
+    if (!countEls.length && !ratingEls.length) return;
+    // Root-relative so it resolves the same from / and /es/ pages in production.
+    var url = (location.pathname.indexOf('/es/') !== -1 ? '../' : '') + 'data/reviews.json';
+    fetch('/data/reviews.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .catch(function () { return fetch(url, { cache: 'no-cache' }).then(function (r) { return r.json(); }); })
+      .then(function (data) {
+        var agg = (data && data.aggregate) || {};
+        var count = agg.reviewCount, rating = agg.ratingValue;
+        if (count != null) {
+          countEls.forEach(function (el) {
+            // If this element also drives the animated counter, update its source value.
+            if (el.hasAttribute('data-count')) el.setAttribute('data-count', String(count));
+            else el.textContent = String(count);
+          });
+        }
+        if (rating != null) {
+          ratingEls.forEach(function (el) { el.textContent = String(rating); });
+        }
+      })
+      .catch(function () { /* leave hardcoded fallback values in place */ });
+  }
+
   /* ── INIT ───────────────────────────────────────────────────────────────── */
   function init() {
+    syncReviewCounts();
     initNav();
     initDrawer();
     initFAQ();

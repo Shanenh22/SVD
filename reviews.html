@@ -43,7 +43,7 @@
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" crossorigin="anonymous"/></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.min.css"/>
 
 
 <!-- Schema -->
@@ -191,7 +191,7 @@
   ]
 }</script>
 </head>
-<body>
+<body data-page-category="reviews">
 <a class="skip-link" href="#main">Skip to main content</a>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://springvalleydentistry.com/index.html"}, {"@type": "ListItem", "position": 2, "name": "Reviews", "item": "https://springvalleydentistry.com/reviews.html"}]}</script>
 
@@ -204,7 +204,7 @@
     <a href="index.html" class="nav-logo" aria-label="Spring Valley Dental Associates — home">
       <picture>
         <source media="(max-width:640px)" srcset="images/spring-valley-logo-mobile.svg" type="image/svg+xml"/>
-        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" height="52" loading="eager" fetchpriority="high"/>
+        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" width="208" height="52" loading="eager" fetchpriority="high"/>
       </picture>
     </a>
     <div class="nav-links" role="list">
@@ -319,7 +319,7 @@
         </a>
       </div>
     </div>
-    <div class="rev-grid">
+    <div class="rev-grid" id="rev-grid" data-dynamic="true">
         <div class="rc reveal reveal-d1">
           <div class="rc-stars" role="img">★★★★★<span class="sr-only">5 out of 5 stars</span></div>
           <p class="rc-text">"Dr. Aletaha and her team are amazing! They made me feel comfortable and explained everything thoroughly. My teeth have never looked better. The office is modern and clean, and the staff is incredibly friendly."</p>
@@ -369,8 +369,52 @@
 </section>
 </main>
 
+<script>
+/* Progressive enhancement: load all patient reviews from data/reviews.json.
+   The static cards above remain as a fallback if JS is off or the fetch fails. */
+(function () {
+  'use strict';
+  var grid = document.getElementById('rev-grid');
+  if (!grid) return;
 
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function stars(n) {
+    n = Math.max(0, Math.min(5, parseInt(n, 10) || 5));
+    return '\u2605'.repeat(n) + '\u2606'.repeat(5 - n);
+  }
 
+  fetch('data/reviews.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (data) {
+      var list = (data && data.reviews) || [];
+      if (!list.length) return; // keep static fallback
+      var html = list.map(function (rev, i) {
+        var delay = 'reveal-d' + ((i % 6) + 1);
+        var verified = (rev.platform || 'Google');
+        return '<div class="rc reveal ' + delay + '">' +
+          '<div class="rc-stars" role="img" aria-label="' + esc(rev.rating || 5) + ' out of 5 stars">' +
+            stars(rev.rating) + '<span class="sr-only">' + esc(rev.rating || 5) + ' out of 5 stars</span></div>' +
+          '<p class="rc-text">&ldquo;' + esc(rev.text) + '&rdquo;</p>' +
+          '<div class="rc-name">' + esc(rev.name) + '</div>' +
+          '<div class="rc-type">' + esc(rev.date) + '</div>' +
+          '<div class="review-verified-badge" aria-label="Verified ' + esc(verified) + ' review">Verified ' + esc(verified) + ' review</div>' +
+        '</div>';
+      }).join('');
+      grid.innerHTML = html;
+      // Cards are injected after core.js has already set up its reveal observer,
+      // so reveal them directly to guarantee visibility.
+      grid.querySelectorAll('.rc.reveal').forEach(function (el) { el.classList.add('in'); });
+    })
+    .catch(function (err) {
+      /* Static cards remain in place — silent, non-blocking. */
+      if (window.console) console.warn('Reviews dynamic load failed; using static fallback.', err);
+    });
+})();
+</script>
 
 
 
@@ -433,6 +477,14 @@
     </div>
   </div>
   <div class="footer-bottom">
+    <nav class="footer-areas" aria-label="Areas we serve">
+      <span class="footer-areas-label">Areas we serve:</span>
+      <a href="dentist-addison-tx.html">Addison</a>
+      <a href="dentist-carrollton-tx.html">Carrollton</a>
+      <a href="dentist-farmers-branch-tx.html">Farmers Branch</a>
+      <a href="dentist-irving-tx.html">Irving</a>
+      <a href="dentist-richardson-tx.html">Richardson</a>
+    </nav>
     <span>&copy; <span id="footer-year">2026</span> Spring Valley Dental Associates. All rights reserved. Information on this site is for educational purposes only and does not constitute dental or medical advice.</span>
     <div class="footer-legal-links">
       <a href="privacy.html">Privacy policy</a>

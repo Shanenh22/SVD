@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Book Your Appointment | Spring Valley Dental Associates Dallas TX</title>
+<title>Book Your Appointment | Spring Valley Dental Dallas</title>
 <meta name="description" content="Book your appointment online, complete new patient forms, or call (972) 852-2222. Same-day emergency slots available every day we are open."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://springvalleydentistry.com/contact.html"/>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Book Your Appointment | Spring Valley Dental Associates Dallas TX"/>
+<meta property="og:title" content="Book Your Appointment | Spring Valley Dental Dallas"/>
 <meta property="og:description" content="Book your appointment online, complete new patient forms, or call (972) 852-2222. Same-day emergency slots available every day we are open."/>
 <meta property="og:url" content="https://springvalleydentistry.com/contact.html"/>
 <meta property="og:image" content="https://springvalleydentistry.com/images/building_front_with_logo.jpg"/>
@@ -43,7 +43,7 @@
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" crossorigin="anonymous"/></noscript>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.min.css"/>
 
 
 <!-- Schema -->
@@ -117,7 +117,6 @@
     "https://www.instagram.com/springvalleydental_dallas",
     "https://www.facebook.com/share/16xP4Vjixk/"
   ],
-,
   "hasMap": "https://www.google.com/maps/place/14228+Midway+Rd+%23100,+Dallas,+TX+75244",
   "medicalSpecialty": [
     "General Dentistry",
@@ -136,8 +135,8 @@
     {"@type": "MedicalProcedure", "name": "Emergency Dental Care"},
     {"@type": "MedicalProcedure", "name": "Gum Disease Treatment"},
     {"@type": "MedicalProcedure", "name": "Tooth Extraction"}
-  ]
-    "founders": [
+  ],
+  "employee": [
     {
       "@type": "Person",
       "name": "Dr. Shokooh Aletaha",
@@ -173,7 +172,7 @@
   }
 }</script>
 </head>
-<body>
+<body data-page-category="contact">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
@@ -181,7 +180,7 @@
     <a href="index.html" class="nav-logo" aria-label="Spring Valley Dental Associates — home">
       <picture>
         <source media="(max-width:640px)" srcset="images/spring-valley-logo-mobile.svg" type="image/svg+xml"/>
-        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" height="52" loading="eager" fetchpriority="high"/>
+        <img src="images/spring-valley-logo-desktop.svg" alt="Spring Valley Dental Associates" width="208" height="52" loading="eager" fetchpriority="high"/>
       </picture>
     </a>
     <div class="nav-links" role="list">
@@ -456,8 +455,7 @@
             Your information is secure and confidential. We comply with HIPAA requirements and never share your information without consent.
           </div>
 
-          <button type="submit" 
-      <!-- UTM tracking — auto-populated by analytics.js -->
+          <!-- UTM tracking — auto-populated by analytics.js -->
       <input type="hidden" name="utm_source" id="utm_source" aria-hidden="true"/>
       <input type="hidden" name="utm_medium" id="utm_medium" aria-hidden="true"/>
       <input type="hidden" name="utm_campaign" id="utm_campaign" aria-hidden="true"/>
@@ -505,7 +503,7 @@
 
           var form    = document.getElementById('contact-form');
           var success = document.getElementById('form-success');
-          var submit  = document.getElementById('form-submit-btn');
+          var submit  = document.getElementById('cta-form-submit');
           if (!form) return;
 
           function showErr(id, show) {
@@ -599,22 +597,12 @@
             .then(function(res) { return res.json(); })
             .then(function(data) {
               if (data.success) {
+                form.dataset.successHandled = 'true';
                 showSuccess({ fname: document.getElementById('fname').value.trim() });
-                /* GA4 — primary conversion event */
-                if (window.gtag) {
-                  gtag('event', 'generate_lead', {
-                    event_category: 'conversion',
-                    event_label: 'contact_form_submit',
-                    value: 1
-                  });
-                  /* Also fire as a proper GA4 conversion */
-                  gtag('event', 'conversion', {
-                    send_to: window.SITE_CONFIG && window.SITE_CONFIG.GA_ADS_CONVERSION_ID || undefined,
-                    event_category: 'Contact',
-                    event_label: 'Appointment Request Form',
-                    value: 1.0,
-                    currency: 'USD'
-                  });
+                /* Fire conversion analytics via the shared hook in analytics.js
+                   (Plausible "Form Success" + GA4 form_submission_success). */
+                if (typeof window.svdFormSuccess === 'function') {
+                  window.svdFormSuccess();
                 }
               } else {
                 setLoading(false);
@@ -733,6 +721,14 @@
     </div>
   </div>
   <div class="footer-bottom">
+    <nav class="footer-areas" aria-label="Areas we serve">
+      <span class="footer-areas-label">Areas we serve:</span>
+      <a href="dentist-addison-tx.html">Addison</a>
+      <a href="dentist-carrollton-tx.html">Carrollton</a>
+      <a href="dentist-farmers-branch-tx.html">Farmers Branch</a>
+      <a href="dentist-irving-tx.html">Irving</a>
+      <a href="dentist-richardson-tx.html">Richardson</a>
+    </nav>
     <span>&copy; <span id="footer-year">2026</span> Spring Valley Dental Associates. All rights reserved. Information on this site is for educational purposes only and does not constitute dental or medical advice.</span>
     <div class="footer-legal-links">
       <a href="privacy.html">Privacy policy</a>

@@ -13,7 +13,7 @@ window.SITE_CONFIG = {
 
   ANALYTICS: {
     /* Plausible — privacy-friendly, no cookies required */
-    ENABLE_PLAUSIBLE: false,  /* Set true only after registering domain at plausible.io */
+    ENABLE_PLAUSIBLE: true,  /* Domain registered at plausible.io */
     DOMAIN: "springvalleydentistry.com",
     // Uncomment to use self-hosted Plausible:
     // PLAUSIBLE_SRC: "https://analytics.example.com/js/plausible.js",
